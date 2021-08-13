@@ -12,9 +12,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "SEE LICENSE IN https://github.com/kjirou/social-game-anniversary/blob/cff26a794f95ff555e949784ddedf6fc8cd16472/LICENSE",
   "bugs": {
     "url": "https://github.com/kjirou/social-game-anniversary/issues"
   },
-  "homepage": "https://github.com/kjirou/social-game-anniversary#readme"
+  "homepage": "https://github.com/kjirou/social-game-anniversary#readme",
+  "private": true
 }
