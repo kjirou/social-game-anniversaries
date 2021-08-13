@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "repository": {
     "type": "git",
@@ -17,5 +20,10 @@
     "url": "https://github.com/kjirou/social-game-anniversary/issues"
   },
   "homepage": "https://github.com/kjirou/social-game-anniversary#readme",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "next": "^11.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
 }
