@@ -1,4 +1,27 @@
-const games = [
+import { GetStaticPropsResult } from 'next'
+import { ReactElement } from 'react'
+
+type Game = {
+  aliases: string[];
+  id: string;
+  name: string;
+  url: string;
+}
+type Anniversary = {
+  date: string;
+  gameId: Game['id'];
+  id: string;
+  name: string;
+}
+type StaticProps = {
+  anniversaries: Anniversary[];
+  games: Game[];
+  indexedAnniversaries: {[key in Anniversary['id']]: Anniversary};
+  indexedGames: {[key in Game['id']]: Game};
+}
+type Props = StaticProps
+
+const games: Game[] = [
   {
     // TODO: idを一意に保つ。
     // TODO: 多言語対応。
@@ -40,7 +63,7 @@ const games = [
 ]
 // TODO: 月日だけを登録して繰り返しできる機能。
 // TODO: 端末違いにより記念日が異なるかもしれない。
-const anniversaries = [
+const anniversaries: Anniversary[] = [
   {
     id: '1',
     gameId: 'fgo',
@@ -73,7 +96,7 @@ const anniversaries = [
   },
 ]
 
-export async function getStaticProps(context) {
+export const getStaticProps = async (): Promise<GetStaticPropsResult<StaticProps>> => {
   const indexedGames = games.reduce((acc, e) => {
     return {
       ...acc,
@@ -97,7 +120,7 @@ export async function getStaticProps(context) {
 }
 
 // TODO: レイアウティング。
-function TopPage(props) {
+const TopPage = (props: Props): ReactElement => {
   return <>
     <h1>ソーシャルゲーム記念日確認ツール</h1>
     <ul>
