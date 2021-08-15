@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { ReactElement } from 'react'
 import { anniversaries, indexedGames } from '../data'
 
@@ -20,11 +21,9 @@ const TopPage = (): ReactElement => {
           .map((anniversary) => {
             const game = indexedGames[anniversary.gameId]
             return <li key={anniversary.id}>
-              <a
-                href={game.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                >{game.name}</a>
+              <Link href={`/anniversary/${anniversary.id}`}>
+                <a>{game.name}</a>
+              </Link>
               <span>,</span>
               <span>{anniversary.date}</span>
               <span>,</span>
