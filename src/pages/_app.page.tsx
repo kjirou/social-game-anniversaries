@@ -7,7 +7,7 @@ export default function MyApp({Component, pageProps}: AppProps): ReactElement {
   return (
     <>
       <Head>
-        <title>Social Game Anniversaries</title>
+        <title>ソシャゲ記念日</title>
       </Head>
       <GlobalStyles />
       <Component {...pageProps} />

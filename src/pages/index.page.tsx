@@ -1,35 +1,49 @@
 import Link from 'next/link'
 import { ReactElement } from 'react'
+import styled from 'styled-components'
 import { anniversaries, indexedGames } from '../data'
+
+const AnniversaryListItem = styled.li`
+  display: block;
+`
+
+const AnniversaryListItemHeading = styled.h3`
+  cursor: pointer;
+  > a > span:nth-child(n+2) {
+    margin-left: 8px;
+  }
+`
 
 // TODO: レイアウティング。
 const TopPage = (): ReactElement => {
+  const sortedAnniversaries = anniversaries
+    .slice()
+    .reverse()
+    .sort((a, b) => {
+      return a.date < b.date
+        ? 1
+        : a.date > b.date
+          ? -1
+          : 0
+    })
   return <>
-    <h1>ソーシャルゲーム記念日確認ツール</h1>
+    <h1>ソシャゲ記念日</h1>
     <ul>
       {
-        anniversaries
-          .slice()
-          .reverse()
-          .sort((a, b) => {
-            return a.date < b.date
-              ? 1
-              : a.date > b.date
-                ? -1
-                : 0
-          })
-          .map((anniversary) => {
-            const game = indexedGames[anniversary.gameId]
-            return <li key={anniversary.id}>
-              <Link href={`/anniversary/${anniversary.id}`}>
-                <a>{game.name}</a>
+        sortedAnniversaries.map((anniversary) => {
+          const game = indexedGames[anniversary.gameId]
+          return <AnniversaryListItem key={anniversary.id}>
+            <AnniversaryListItemHeading>
+              <Link href={`/anniversary/${anniversary.id}`} passHref>
+                  <a>
+                    <span>{anniversary.date}</span>
+                    <span>{game.name}</span>
+                    <span>{anniversary.name}</span>
+                  </a>
               </Link>
-              <span>,</span>
-              <span>{anniversary.date}</span>
-              <span>,</span>
-              <span>{anniversary.name}</span>
-            </li>
-          })
+            </AnniversaryListItemHeading>
+          </AnniversaryListItem>
+        })
       }
     </ul>
   </>
