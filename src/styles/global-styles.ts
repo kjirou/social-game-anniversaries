@@ -9,7 +9,16 @@ export const GlobalStyles: GlobalStyleComponent<
   CSSObject,
   DefaultTheme
 > = createGlobalStyle`
-  body {
-    background-color: #ccc;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 1em;
+    font-weight: normal;
+  }
+  ul {
+    list-style: none;
   }
 `
